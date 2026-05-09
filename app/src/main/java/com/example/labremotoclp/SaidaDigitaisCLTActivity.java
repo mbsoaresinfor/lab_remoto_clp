@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,6 +38,9 @@ public class SaidaDigitaisCLTActivity extends AppCompatActivity {
                 Log.i("marcelo","Status desconhecido");
             }
         }
+
+        Toast.makeText(getApplicationContext(), "Dados recebidos da CLP",
+                Toast.LENGTH_SHORT).show();
     }
 
 

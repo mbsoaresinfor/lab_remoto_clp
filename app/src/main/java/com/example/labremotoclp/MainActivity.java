@@ -24,14 +24,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void abrirEntradasDigitaisClp(View view) {
+    public void abrirEntradasDigitaisCLP(View view) {
         Intent intent = new Intent(this, EntradaDigitaisCLPActivity.class);
         startActivity(intent);
 
     }
 
-    public void abrirSaidasDigitaisCLT(View view) {
+    public void abrirSaidasDigitaisCLP(View view) {
         Intent intent = new Intent(this, SaidaDigitaisCLTActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirEntradasAnalogicasCLP(View view) {
+        Intent intent = new Intent(this, EntradaAnalogicasCLPActivity.class);
         startActivity(intent);
     }
 }

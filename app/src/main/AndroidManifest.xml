@@ -22,8 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SaidaDigitaisCLTActivity"
-          >
+            android:name=".SaidaDigitaisCLTActivity"  android:exported="false">
+        </activity>
+        <activity
+            android:name=".EntradaDigitaisCLPActivity"  android:exported="false">
         </activity>
     </application>
 

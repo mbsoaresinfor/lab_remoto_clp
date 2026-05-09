@@ -27,6 +27,7 @@
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="84dp"
+            android:onClick="abrirSaidasDigitaisCLT"
             android:text="SAÍDAS DIGITAIS DO CLP" />
 
         <Button

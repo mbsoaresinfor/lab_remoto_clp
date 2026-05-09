@@ -25,8 +25,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void abrirEntradasDigitaisClp(View view) {
-        Intent intent = new Intent(this, SaidaDigitaisCLTActivity.class);
+        Intent intent = new Intent(this, EntradaDigitaisCLPActivity.class);
         startActivity(intent);
 
+    }
+
+    public void abrirSaidasDigitaisCLT(View view) {
+        Intent intent = new Intent(this, SaidaDigitaisCLTActivity.class);
+        startActivity(intent);
     }
 }

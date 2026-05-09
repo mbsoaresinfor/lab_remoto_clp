@@ -20,7 +20,7 @@ public class EntradaAnalogicasCLPActivity extends AppCompatActivity {
 
     public void escrever(View view) {
 
-        Toast.makeText(getApplicationContext(), "Dados enviados para a CLP",
+        Toast.makeText(getApplicationContext(), "Dados escritos na CLP",
                 Toast.LENGTH_SHORT).show();
     }
 }

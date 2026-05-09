@@ -169,7 +169,8 @@
             android:id="@+id/button10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ler" />
+            android:text="Ler"
+            android:onClick="ler"/>
 
     </LinearLayout>
 

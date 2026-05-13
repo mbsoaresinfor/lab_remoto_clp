@@ -8,6 +8,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SaidaDigitaisCLTActivity extends AppCompatActivity {
 
 
@@ -16,14 +20,17 @@ public class SaidaDigitaisCLTActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("SAÍDAS DIGITAIS DO CLP");
         setContentView(R.layout.activity_saida_digitais_clp);
-     //   ler(null);
+        lerDadosCLP();
     }
 
     public void ler(View view) {
+        lerDadosCLP();
+    }
+
+    private void atualizarInterfaces(String dados){
         ImageView[] imageViews = {findViewById(R.id.imageView1),findViewById(R.id.imageView2),findViewById(R.id.imageView3),findViewById(R.id.imageView4),findViewById(R.id.imageView5),
                 findViewById(R.id.imageView6),findViewById(R.id.imageView7),findViewById(R.id.imageView8),findViewById(R.id.imageView9),findViewById(R.id.imageView10)};
 
-        String dados = lerDadosCLP();
         String[] dadosInterfaces = dados.split(",");
         for(int i=0; i < dadosInterfaces.length;i++){
             String[] dadoInterface = dadosInterfaces[i].split(":");
@@ -37,15 +44,37 @@ public class SaidaDigitaisCLTActivity extends AppCompatActivity {
                 Log.i("marcelo","Status desconhecido");
             }
         }
-
         Toast.makeText(getApplicationContext(), "Dados lidos da CLP",
                 Toast.LENGTH_SHORT).show();
     }
+    private void lerDadosCLP(){
 
+        Call<String> call = RetrofitClient.getApiService().getSaidaDigitais();
 
-    private String lerDadosCLP(){
-       var r =  "\"OUT1\":1,\"OUT2\":0,\"OUT3\":0,\"OUT4\":0,\"OUT5\":0,\"OUT6\":0,\"OUT7\":0,\"OUT8\":0,\"OUT9\":1,\"OUT10\":0";
-        Log.i("marcelo", "dados lidos da clp: " + r);
-        return r;
+        // Executa de forma assíncrona (não trava a tela)
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String textoResultado = response.body();
+                    textoResultado =   textoResultado.replace("{","");
+                    textoResultado =  textoResultado.replace("}","");
+
+                    Log.d("marcelo", "dados lidos da clp: " + textoResultado);
+                    atualizarInterfaces(textoResultado);
+
+                } else {
+                    Log.e("marcelo", "Código de erro do servidor: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Falha ao buscar dados da CLP",
+                        Toast.LENGTH_SHORT).show();
+                Log.e("marcelo", "Falha catastrófica na requisição", t);
+            }
+        });
+
     }
 }

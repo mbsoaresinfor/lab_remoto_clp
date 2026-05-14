@@ -28,14 +28,14 @@
                     android:id="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="IN1"
+                    android:text="A0"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="IN2"
+                    android:text="A1"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
             </LinearLayout>

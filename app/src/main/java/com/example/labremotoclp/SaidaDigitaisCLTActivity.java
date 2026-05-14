@@ -36,9 +36,9 @@ public class SaidaDigitaisCLTActivity extends AppCompatActivity {
             String[] dadoInterface = dadosInterfaces[i].split(":");
             int statusInterface = Integer.parseInt(dadoInterface[1]);
             ImageView imageView = imageViews[i];
-            if(StatusInterface.ATIVADO == statusInterface){
+            if(Interface.STATUS_ATIVADO == statusInterface){
                 imageView.setImageResource(android.R.drawable.presence_online);
-            }else if(StatusInterface.DESABILITADO == statusInterface){
+            }else if(Interface.STATUS_DESABILITADO == statusInterface){
                 imageView.setImageResource(android.R.drawable.presence_busy);
             }else{
                 Log.i("marcelo","Status desconhecido");
@@ -48,10 +48,8 @@ public class SaidaDigitaisCLTActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
     }
     private void lerDadosCLP(){
+        Call<String> call = RetrofitClient.getApiService().lerSaidaDigitais();
 
-        Call<String> call = RetrofitClient.getApiService().getSaidaDigitais();
-
-        // Executa de forma assíncrona (não trava a tela)
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

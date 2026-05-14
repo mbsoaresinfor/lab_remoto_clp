@@ -55,7 +55,7 @@ public class EntradaDigitaisCLPActivity extends AppCompatActivity {
 
     public void escrever(View view) {
 
-        Toast.makeText(getApplicationContext(), "Dados escritos na CLP",
+        Toast.makeText(getApplicationContext(), "Dados gravados na CLP",
                 Toast.LENGTH_SHORT).show();
     }
 }

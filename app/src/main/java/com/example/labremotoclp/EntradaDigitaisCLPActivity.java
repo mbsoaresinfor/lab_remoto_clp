@@ -1,5 +1,6 @@
 package com.example.labremotoclp;
 
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EntradaDigitaisCLPActivity extends AppCompatActivity {
 
@@ -54,8 +59,40 @@ public class EntradaDigitaisCLPActivity extends AppCompatActivity {
 
 
     public void escrever(View view) {
+        Switch[] sws =  getSwitchs();
+        for(int i = 0; i < sws.length; i++){
+            Switch sw = sws[i];
+            if(sw.isChecked()){
+                Interface.atualizarInterface("IN"+(i+1), Interface.STATUS_ATIVADO);
+            }else{
+                Interface.atualizarInterface("IN"+(i+1), Interface.STATUS_DESABILITADO);
+            }
+        }
 
-        Toast.makeText(getApplicationContext(), "Dados gravados na CLP",
-                Toast.LENGTH_SHORT).show();
+        Log.i("marcelo","dados para enviar servidor: " +
+                Interface.converteParaJson());
+        Call<String> call = RetrofitClient.getApiService()
+                .escreverInterfaces(Interface.converteParaJson());
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String respostaServidor = response.body();
+                    Toast.makeText(getApplicationContext(), "Dados gravados na CLP",
+                            Toast.LENGTH_SHORT).show();
+                    Log.d("marcelo", "O servidor respondeu: " + respostaServidor);
+                } else {
+                    Log.e("marcelo", "Erro no servidor. Código HTTP: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e("marcelo", "Falha na conexão de rede", t);
+            }
+        });
+
+
     }
 }

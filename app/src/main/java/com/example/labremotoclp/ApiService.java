@@ -4,12 +4,13 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Url;
 
 public interface ApiService {
 
-    @GET("/lerSaidaDigitais")
+    @GET("api")
     Call<String> lerSaidaDigitais();
 
-    @POST("/gravarInterfaces")
+    @POST("api")
     Call<String> escreverInterfaces(@Body String mensagem);
 }

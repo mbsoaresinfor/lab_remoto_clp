@@ -32,7 +32,7 @@ public class SaidaDigitaisCLTActivity extends AppCompatActivity {
                 findViewById(R.id.imageView6),findViewById(R.id.imageView7),findViewById(R.id.imageView8),findViewById(R.id.imageView9),findViewById(R.id.imageView10)};
 
         String[] dadosInterfaces = dados.split(",");
-        for(int i=0; i < dadosInterfaces.length;i++){
+        for(int i=0; i < imageViews.length;i++){
             String[] dadoInterface = dadosInterfaces[i].split(":");
             int statusInterface = Integer.parseInt(dadoInterface[1]);
             ImageView imageView = imageViews[i];

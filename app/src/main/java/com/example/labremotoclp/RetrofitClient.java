@@ -9,7 +9,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://10.75.255.166:8080/";
+    private static final String BASE_URL = "https://sewing-part-elect-changing.trycloudflare.com/";
             //"http://orientation-mardi-packages-shipped.trycloudflare.com/";
     private static ApiService apiService;
 
